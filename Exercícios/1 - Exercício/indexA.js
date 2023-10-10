@@ -3,7 +3,28 @@
  caractere do texto é analisado em relação ao conjunto de vogais
  previamente definido.*/
 function findVowelsQuantity(text) {
-    const Vowels = ["a", "e", "i", "o", "u"];
+    const Vowels = [
+        "a",
+        "e",
+        "i",
+        "o",
+        "u",
+        "á",
+        "é",
+        "í",
+        "ó",
+        "ú",
+        "à",
+        "è",
+        "ì",
+        "ò",
+        "ù",
+        "ã",
+        "ẽ",
+        "ĩ",
+        "õ",
+        "ũ",
+    ];
     const vowelsQuantity = text
         .toLowerCase()
         .split("")

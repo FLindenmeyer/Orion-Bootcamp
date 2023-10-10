@@ -1,7 +1,28 @@
 const handleSubmit = (ev) => {
     ev.preventDefault();
+    const Vowels = [
+        "a",
+        "e",
+        "i",
+        "o",
+        "u",
+        "á",
+        "é",
+        "í",
+        "ó",
+        "ú",
+        "à",
+        "è",
+        "ì",
+        "ò",
+        "ù",
+        "ã",
+        "ẽ",
+        "ĩ",
+        "õ",
+        "ũ",
+    ];
     const input = document.getElementById("textInput");
-    const Vowels = ["a", "e", "i", "o", "u"];
     const h4 = document.getElementById("result");
     if (input.value !== "") {
         const vowelsQuantity = input.value

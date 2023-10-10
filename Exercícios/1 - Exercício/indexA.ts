@@ -2,9 +2,29 @@
  letras minúsculas. Em seguida, ela cria um novo array, onde cada 
  caractere do texto é analisado em relação ao conjunto de vogais 
  previamente definido.*/
-function findVowelsQuantity(text: string) {
-  const Vowels: string[] = ["a", "e", "i", "o", "u"];
-
+function findVowelsQuantity(text: string): number | undefined {
+  const Vowels: string[] = [
+    "a",
+    "e",
+    "i",
+    "o",
+    "u",
+    "á",
+    "é",
+    "í",
+    "ó",
+    "ú",
+    "à",
+    "è",
+    "ì",
+    "ò",
+    "ù",
+    "ã",
+    "ẽ",
+    "ĩ",
+    "õ",
+    "ũ",
+  ];
   const vowelsQuantity: string[] = text
     .toLowerCase()
     .split("")
