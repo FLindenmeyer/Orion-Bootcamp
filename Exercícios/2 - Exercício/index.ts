@@ -1,27 +1,29 @@
-// Importa a lista de pessoas do módulo 'list'
-import { lista } from "./list";
+import { Lista, lista } from "./list";
 
-// Encontra uma pessoa pelo ID na lista
-const findById = (id: number) => lista.find((person) => person.id === id);
+// Função para encontrar uma pessoa na lista pelo id.
+function findPersonById(id: number): Lista | undefined {
+  const foundPerson = lista.find((element) => element.id === id);
+  return foundPerson;
+}
 
-// A) Função para encontrar e exibir a biografia de uma pessoa pelo ID
-function findBioById(id: number) {
-  const personA = findById(id);
-  console.log(`\nA) Biografia: ${personA.bio}`);
-  return personA.bio;
+// A) Função que retorna a bio do id passado
+function findBioById(id: number): string {
+  const personA = findPersonById(id);
+  console.log(personA ? `\nA) Biografia: ${personA.bio}` : "\nA) Biografia não encontrada!");
+  return personA ? personA.bio : "\nA) Biografia não encontrada!";
 }
 findBioById(1);
 
 // B) Função para encontrar e exibir o nome de uma pessoa pelo ID
-function findNameById(id: number) {
-  const personB = findById(id);
+function findNameById(id: number): string {
+  const personB = findPersonById(id);
   console.log(`\nB) Nome: ${personB.name}`);
-  return personB.name;
+  return personB ? personB.name : "\nB) Nome não encontrado!";
 }
 findNameById(2);
 
-// C) Função para remover um item específico de uma pessoa pelo ID
-function removeItemById(id: number) {
+// C) Função que apaga um item da lista a partir de um id passado
+function removeItemById(id: number): object {
   const newList = lista.filter((person) => person.id !== id);
   console.log(`\nC) Nova lista com item de id=${id} removido: `);
   console.log(newList);
@@ -31,8 +33,8 @@ function removeItemById(id: number) {
 removeItemById(3);
 
 // D) Função para editar um item específico de uma pessoa pelo ID
-function editById(id: number, item: string, text: string) {
-  const personD = findById(id);
+function editById(id: number, item: string, text: string): Lista | undefined {
+  const personD = findPersonById(id);
   if (item === "name") {
     personD.name = text;
     console.log(`\nD) O ${item} foi atualizada para: ${personD.name}`);

@@ -1,23 +1,25 @@
 "use strict";
-// Importando os tipos e dados da lista de outro arquivo chamado "list"
 Object.defineProperty(exports, "__esModule", { value: true });
 const list_1 = require("./list");
-function findByIdFunctional(id) {
+// Função para encontrar uma pessoa na lista pelo id.
+function findPersonById(id) {
     const foundPerson = list_1.lista.find((element) => element.id === id);
     return foundPerson;
 }
-// A) Função que retorne a bio do id passado
+// A) Função que retorna a bio do id passado
 function findBioById(id) {
-    const personA = findByIdFunctional(id);
-    return personA ? personA.bio : "> err: Biografia não encontrada!";
+    const personA = findPersonById(id);
+    console.log(personA ? `\nA) Biografia: ${personA.bio}` : "\nA) Biografia não encontrada!");
+    return personA ? personA.bio : "\nA) Biografia não encontrada!";
 }
-console.log(`\nA) Biografia: ${findBioById(1)}`);
-// B) Mostrar o nome da pessoa encontrada pelo ID
+findBioById(1);
+// B) Função para encontrar e exibir o nome de uma pessoa pelo ID
 function findNameById(id) {
-    const personB = findByIdFunctional(id);
-    return personB ? personB.name : "> err: Nome não encontrado!";
+    const personB = findPersonById(id);
+    console.log(`\nB) Nome: ${personB.name}`);
+    return personB ? personB.name : "\nB) Nome não encontrado!";
 }
-console.log(`\nB) Nome: ${findNameById(1)}`);
+findNameById(2);
 // C) Função que apaga um item da lista a partir de um id passado
 function removeItemById(id) {
     const newList = list_1.lista.filter((person) => person.id !== id);
@@ -25,10 +27,10 @@ function removeItemById(id) {
     console.log(newList);
     return newList;
 }
-removeItemById(3);
-// D) Função que altera a bio ou o name a partir de um id passado
-function editByIdFuncional(id, item, text) {
-    const personD = findByIdFunctional(id);
+removeItemById(1);
+// D) Função para editar um item específico de uma pessoa pelo ID
+function editPersonByIdFunctional(id, item, text) {
+    const personD = findPersonById(id);
     if (personD) {
         // Se uma pessoa for encontrada, execute o seguinte bloco.
         let newPerson = { ...personD };
@@ -47,10 +49,11 @@ function editByIdFuncional(id, item, text) {
         return newPerson;
         // Retorna a cópia do objeto modificado.
     }
-    console.log("\nD) Pessoa não encontrada");
     // Se a pessoa não for encontrada, exibe uma mensagem indicando que a pessoa não foi encontrada.
+    console.log("\nD) Pessoa não encontrada");
+    return undefined;
 }
-const resultD = editByIdFuncional(3, "bio", "a bio foi atualizada!");
+const resultD = editPersonByIdFunctional(3, "bio", "a bio foi atualizada!");
 console.log(resultD);
 console.log(`\nA Lista original continua imutável:`);
 console.log(list_1.lista);
