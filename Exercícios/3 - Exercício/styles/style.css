@@ -6,7 +6,8 @@
 body {
   background: #c9d1db;
   width: 100vw;
-  padding-top: 2rem;
+  padding: 2rem 0;
+  margin: 0;
 }
 
 section {
@@ -33,7 +34,8 @@ input {
   background: #282c34;
   width: fit-content;
   color: white;
-  margin: 60px 0;
+  margin: 32px 0;
+  height: 150px;
 
   & h4 {
     display: flex;
@@ -42,7 +44,9 @@ input {
     height: 60px;
     width: 100%;
     margin: 0;
-    border: 1px dotted white;
+    padding: 20px;
+    border: 2px solid black;
+    height: 100%;
   }
 }
 
@@ -59,6 +63,10 @@ form {
   padding: 20px;
   border: 2px solid black;
   width: fit-content;
+}
+
+#form-1B {
+  height: 100%;
 }
 
 #form-2D {

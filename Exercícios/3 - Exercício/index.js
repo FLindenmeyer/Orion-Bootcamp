@@ -85,7 +85,9 @@ function vowelsQuantity(text) {
 const findPersonById = (id) => lista.find((person) => person.id === id);
 // A) Função para encontrar e exibir a biografia de uma pessoa pelo ID
 function findBioById(id) {
+    //Chama a função findPersonById e armazena o resultado em personA
     const personA = findPersonById(id);
+    //Se personA for avaliado como verdadeiro, retorna a bio, caso contrario, undefined
     return personA ? personA.bio : undefined;
 }
 // B) Função para encontrar e exibir o nome de uma pessoa pelo ID
@@ -95,20 +97,83 @@ function findNameById(id) {
 }
 // C) Função para remover um item específico de uma pessoa pelo ID
 function removeItemById(id) {
-    // cria uma nova lista excluindo o item com o id fornecido como parâmetro
+    // cria uma nova lista filtrando o item com o id fornecido para fora da lista
     const newList = lista.filter((person) => person.id !== id);
+    // validação caso faça uma busca com id nao existente
     return newList.length !== lista.length ? newList : undefined;
 }
-// D) Função para editar um item específico de uma pessoa pelo ID
+// D) Função que altera a bio ou o name a partir de um id passado
 function editPersonById(id, item, text) {
     const personD = findPersonById(id);
-    if (personD && item === "name") {
-        personD.name = text;
-        return personD;
-    }
-    else if (personD && item === "bio") {
-        personD.bio = text;
-        return personD;
+    if (personD) {
+        // Se uma pessoa for encontrada, execute o seguinte bloco.
+        let newPerson = { ...personD };
+        // Cria uma cópia do objeto original "personD" usando o operador spread.
+        if (item === "name") {
+            newPerson.name = text;
+        }
+        else if (item === "bio") {
+            newPerson.bio = text;
+        }
+        return newPerson;
     }
     return undefined;
 }
+////////////////////////////////////////////////////////////////
+//Paradigma Imperativo
+let foundPerson;
+// Função para encontrar uma pessoa pelo ID de forma imperativa
+function findByIdImperativo(id) {
+    for (let i = 0; i < lista.length; i++) {
+        if (lista[i].id === id) {
+            foundPerson = lista[i];
+            break; // Encontrou a pessoa, então pare o loop
+        }
+    }
+    console.log(foundPerson ? `\nA) Biografia: ${foundPerson.bio}` : "\nA) Pessoa não encontrada.");
+    return foundPerson;
+}
+const personA = findByIdImperativo(1);
+// Função para obter o nome de uma pessoa de forma imperativa
+function getName(person) {
+    const name = person ? person.name : "Nome não encontrado.";
+    console.log(`\nB) Nome: ${name}`);
+}
+// Chame a função passando personA como argumento
+getName(personA);
+// Função para remover um item pelo ID de forma imperativa
+function removeItemByIdImperativo(id) {
+    for (let i = 0; i < lista.length; i++) {
+        if (lista[i].id === id) {
+            lista.splice(i, 1); // Remove o item da lista
+            console.log(`\nC) Item com id=${id} removido da lista! `);
+            console.log(lista);
+        }
+    }
+}
+removeItemByIdImperativo(1);
+// Função para editar um item pelo ID e atributo de forma imperativa
+function editByIdImperativo(id, item, text) {
+    let itemFound = false; // Flag para verificar se o item foi encontrado
+    for (let i = 0; i < lista.length; i++) {
+        if (lista[i].id === id) {
+            if (item === "name") {
+                lista[i].name = text; // Atualiza o nome
+                console.log(`\nD) O "nome" foi atualizado para: ${lista[i].name}`);
+                console.log(lista[i]);
+            }
+            else if (item === "bio") {
+                lista[i].bio = text; // Atualiza a biografia
+                console.log(`\nD) A "bio" foi atualizada para: ${lista[i].bio}`);
+            }
+            itemFound = true; // Item encontrado
+            break; // Pare o loop depois de encontrar o item
+        }
+    }
+    if (!itemFound) {
+        console.log(`\nD) Item não encontrado, impossível editar!`);
+    }
+}
+editByIdImperativo(2, "name", "Diego");
+console.log(`\nA Lista original sofreu modificações:`);
+console.log(lista);
