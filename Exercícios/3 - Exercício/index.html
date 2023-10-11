@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 3</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <section id="ex1">
+        <div>
+          <h3>1 - Criar uma função que retorne a quantidade de vogais da palavra passada.</h3>
+          <p>
+            <strong>a)</strong> Dar um exemplo de uso com uma palavra recebida via parâmetro da
+            função.
+          </p>
+          <div class="result-container">
+            <pre>       
+              <code > 
+function findVowelsQuantity(text: string): number | undefined {
+  // Express&atilde;o regular para encontrar todas as vogais, incluindo acentuadas (global e insens&iacute;vel a mai&uacute;sculas/min&uacute;sculas)
+  const vowelsRegex: RegExp = /[aeiou&aacute;&agrave;&acirc;&atilde;&eacute;&ecirc;&iacute;&oacute;&ocirc;&otilde;&uacute;&uuml;]/gi;
+
+  // Encontrar todas as correspond&ecirc;ncias das vogais no text fornecido
+  const vowelsQuantity = text.match(vowelsRegex);
+
+  return vowelsQuantity ? vowelsQuantity.length : 0;
+}
+
+console.log(findVowelsQuantity(&quot;Millie Graham&quot;));
+// output: 5
+              </code>
+            </pre>
+          </div>
+          <p>
+            <strong>b)</strong> Dar um exemplo de uso com uma palavra recebida via input no
+            formulário.
+          </p>
+          <div class="result">
+            <form id="form-1B" action="">
+              <label for="input1B">Palavra:</label>
+              <input type="text" id="input1B" name="input1B" placeholder="Texto = 2 vogais" />
+              <button id="submitBtn" type="submit">Apply</button>
+            </form>
+            <h4 id="vowelsResult"></h4>
+          </div>
+        </div>
+      </section>
+      <section id="ex2">
+        <h3>2 - Dado o array:</h3>
+        <pre>
+          <code>
+let lista: Array&lt;Object&gt; = [
+  {
+    id: 1,
+    name: "Ada Lovelace",
+    bio: " Ada Lovelace, foi uma matemática e escritora inglesa reconhecida por ter escrito o primeiro algoritmo para ser processado por uma máquina",
+  },
+  {
+    id: 2,
+    name: "Alan Turing",
+    bio: "Alan Turing foi um matemático, cientista da computação, lógico, cripto-analista, filósofo e biólogo teórico britânico, ele é amplamente considerado o pai da ciência da computação teórica e da inteligência artificial",
+  },
+  {
+    id: 3,
+    name: "Nikola Tesla",
+    bio: "Nikola Tesla foi um inventor, engenheiro eletrotécnico e engenheiro mecânico sérvio, mais conhecido por suas contribuições ao projeto do moderno sistema de fornecimento de eletricidade em corrente alternada.",
+  },
+  {
+    id: 4,
+    name: "Nicolau Copérnico",
+    bio: "Nicolau Copérnico foi um astrônomo e matemático polonês que desenvolveu a teoria heliocêntrica do Sistema Solar",
+  },
+];
+          </code>
+        </pre>
+        <p><strong>a)</strong> Crie uma função que retorne a bio do id passado</p>
+        <div class="result-container">
+          <pre>        
+            <code  > 
+// Encontra uma pessoa pelo ID na lista
+const findPersonById = (id: number) =&gt; lista.find((person) =&gt; person.id === id);
+
+// A) Fun&ccedil;&atilde;o para encontrar e exibir a biografia de uma pessoa pelo ID
+function findBioById(id: number) {
+const personA = findPersonById(id);
+
+return personA.bio;
+}
+            </code>
+            <form id="form-2A" action="">
+              <label for="input2A">Id:</label>
+              <input id="input2A" name="input2A" type="number" placeholder="a)"/>
+              <button type="submit">Apply</button>
+            </form>
+          </pre>
+        </div>
+        <p><strong>b)</strong> Crie uma função que retorne o name do id passado</p>
+        <div class="result-container">
+          <pre>        
+            <code  > 
+// B) Fun&ccedil;&atilde;o para encontrar e exibir o nome de uma pessoa pelo ID
+function findNameById(id: number) {
+  const personB = findPersonById(id);
+
+  return personB.name;
+}
+            </code>
+            <form id="form-2B" action="">
+              <label for="input2B">Id:</label>
+              <input id="input2B" name="input2B" type="number" placeholder="b)"/>
+              <button type="submit">Apply</button>
+            </form>
+          </pre>
+        </div>
+        <p>
+          <strong>c)</strong> Crie uma função que apague um item da lista a partir de um id passado
+        </p>
+        <div class="result-container">
+          <pre>        
+            <code  > 
+function removeItemById(id: number): Object | undefined {
+  // cria uma nova lista excluindo o item com o id fornecido como par&acirc;metro
+  const newList = lista.filter((person) =&gt; person.id !== id);
+
+  return newList.length !== lista.length ? newList : undefined;
+}
+            </code>
+            <form id="form-2C" action="">
+              <label for="input2C">Id:</label>
+              <input id="input2C" name="input2C" type="number" placeholder="c)"/>
+              <button type="submit">Apply</button>
+            </form>
+          </pre>
+        </div>
+        <p>
+          <strong>d)</strong> Crie uma função que altere a bio ou o name a partir de um id passado
+        </p>
+        <div class="result-container">
+          <pre>        
+            <code  > 
+// D) Fun&ccedil;&atilde;o para editar um item espec&iacute;fico de uma pessoa pelo ID
+function editPersonById(id: number, item: string, text: string): Object | undefined {
+
+  const personD = findPersonById(id);
+
+  if (personD &amp;&amp; item === &quot;name&quot;) {
+    personD.name = text;
+    return personD;
+  } else if (personD &amp;&amp; item === &quot;bio&quot;) {
+    personD.bio = text;
+    return personD;
+  }
+
+  return undefined;
+}
+            </code>
+          </pre>
+          <form id="form-2D" action="">
+            <div>
+              <label for="input2D">Id:</label>
+              <input id="input2D" name="input2D" type="number" placeholder="d)" />
+            </div>
+            <div class="checkboxContainer">
+              <input type="radio" id="bio" name="group" value="bio" />
+              <label for="bio">Bio</label>
+              <input type="radio" id="name" name="group" value="name" />
+              <label for="name">Name</label>
+            </div>
+            <div>
+              <label for="formText2D">Texto:</label>
+              <input type="text" name="formText2D" id="formText2D" />
+            </div>
+            <button type="submit">Apply</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <script src="index.js"></script>
+  </body>
+</html>
