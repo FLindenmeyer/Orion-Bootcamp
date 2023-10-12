@@ -1,10 +1,10 @@
-export interface Lista {
+export interface Person {
   id: number;
   name: string;
   bio: string;
 }
 
-export const lista: Array<Lista> = [
+export const list: Array<Person> = [
   {
     id: 1,
     name: "Ada Lovelace",

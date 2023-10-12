@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const list_1 = require("./list");
-// Função para encontrar uma pessoa na lista pelo id.
+// Função para encontrar uma pessoa na list pelo id.
 function findPersonById(id) {
-    const foundPerson = list_1.lista.find((element) => element.id === id);
+    const foundPerson = list_1.list.find((element) => element.id === id);
     return foundPerson;
 }
 // A) Função que retorna a bio do id passado
@@ -20,10 +20,10 @@ function findNameById(id) {
     return personB ? personB.name : "\nB) Nome não encontrado!";
 }
 findNameById(2);
-// C) Função que apaga um item da lista a partir de um id passado
+// C) Função que apaga um item da list a partir de um id passado
 function removeItemById(id) {
-    const newList = list_1.lista.filter((person) => person.id !== id);
-    console.log(`\nC) Nova lista com item de id=${id} removido: `);
+    const newList = list_1.list.filter((person) => person.id !== id);
+    console.log(`\nC) Nova list com item de id=${id} removido: `);
     console.log(newList);
     return newList;
 }
@@ -31,16 +31,17 @@ removeItemById(3);
 // D) Função para editar um item específico de uma pessoa pelo ID
 function editById(id, item, text) {
     const personD = findPersonById(id);
-    if (item === "name") {
+    const option = item.toLowerCase();
+    if (personD && option === "name") {
         personD.name = text;
-        console.log(`\nD) O ${item} foi atualizada para: ${personD.name}`);
+        console.log(`\nD) O ${option} foi atualizada para: ${personD.name}`);
     }
-    else if (item === "bio") {
+    else if (personD && option === "bio") {
         personD.bio = text;
-        console.log(`\nD) A ${item} foi atualizada para: ${personD.bio}`);
+        console.log(`\nD) A ${option} foi atualizada para: ${personD.bio}`);
     }
     console.log("\nPersonD atualizado:");
     console.log(personD);
-    return personD;
+    return personD ? personD : undefined;
 }
 editById(4, "bio", "a bio foi atualizada!");
