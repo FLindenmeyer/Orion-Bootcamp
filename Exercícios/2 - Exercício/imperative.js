@@ -25,8 +25,8 @@ getName(personA);
 function removeItemByIdImperative(id) {
     for (let i = 0; i < list_1.list.length; i++) {
         if (list_1.list[i].id === id) {
-            list_1.list.splice(i, 1); // Remove o item da list
-            console.log(`\nC) Item com id=${id} removido da list! `);
+            list_1.list.splice(i, 1); // Remove o item da lista
+            console.log(`\nC) Item com id=${id} removido da lista! `);
         }
     }
 }
@@ -53,5 +53,5 @@ function editByIdImperative(id, item, text) {
     }
 }
 editByIdImperative(2, "name", "Diego");
-console.log(`\nA List original sofreu modificações:`);
+console.log(`\nA lista original sofreu modificações:`);
 console.log(list_1.list);

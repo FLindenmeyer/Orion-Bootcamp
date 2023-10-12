@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const list_1 = require("./list");
-// Função para encontrar uma pessoa na list pelo id.
+// Função para encontrar uma pessoa na lista pelo id.
 function findPersonById(id) {
     const foundPerson = list_1.list.find((person) => person.id === id);
     return foundPerson;
@@ -20,10 +20,10 @@ function findNameById(id) {
     return personB ? personB.name : "\nB) Nome não encontrado!";
 }
 findNameById(2);
-// C) Função que apaga um item da list a partir de um id passado
+// C) Função que apaga um item da lista a partir de um id passado
 function removeItemById(id) {
     const newList = list_1.list.filter((person) => person.id !== id);
-    console.log(`\nC) Nova list com item de id=${id} removido: `);
+    console.log(`\nC) Item de id=${id} removido com sucesso.\nNova Lista:`);
     console.log(newList);
     return newList;
 }
@@ -56,5 +56,5 @@ function editPersonByIdFunctional(id, item, text) {
 }
 const resultD = editPersonByIdFunctional(3, "bio", "a bio foi atualizada!");
 console.log(resultD);
-console.log(`\nA list original continua imutável:`);
+console.log(`\nA lista original continua imutável:`);
 console.log(list_1.list);

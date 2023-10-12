@@ -1,6 +1,6 @@
 import { Person, list } from "./list";
 
-// Função para encontrar uma pessoa na list pelo id.
+// Função para encontrar uma pessoa na lista pelo id.
 function findPersonById(id: number): Person | undefined {
   const foundPerson: Person = list.find((element) => element.id === id);
   return foundPerson;
@@ -22,10 +22,10 @@ function findNameById(id: number): string {
 }
 findNameById(2);
 
-// C) Função que apaga um item da list a partir de um id passado
+// C) Função que apaga um item da lista a partir de um id passado
 function removeItemById(id: number): Person[] {
   const newList: Person[] = list.filter((person) => person.id !== id);
-  console.log(`\nC) Nova list com item de id=${id} removido: `);
+  console.log(`\nC) Item de id=${id} removido com sucesso.\nNova Lista:`);
   console.log(newList);
   return newList;
 }

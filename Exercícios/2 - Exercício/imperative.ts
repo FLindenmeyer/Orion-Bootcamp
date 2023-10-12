@@ -29,8 +29,8 @@ getName(personA);
 function removeItemByIdImperative(id: number): void {
   for (let i = 0; i < list.length; i++) {
     if (list[i].id === id) {
-      list.splice(i, 1); // Remove o item da list
-      console.log(`\nC) Item com id=${id} removido da list! `);
+      list.splice(i, 1); // Remove o item da lista
+      console.log(`\nC) Item com id=${id} removido da lista! `);
     }
   }
 }
@@ -61,5 +61,5 @@ function editByIdImperative(id: number, item: string, text: string): void {
 
 editByIdImperative(2, "name", "Diego");
 
-console.log(`\nA List original sofreu modificações:`);
+console.log(`\nA lista original sofreu modificações:`);
 console.log(list);
