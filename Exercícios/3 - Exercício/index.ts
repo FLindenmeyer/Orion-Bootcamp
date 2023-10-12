@@ -1,10 +1,10 @@
-interface Lista {
+interface Person {
   id: number;
   name: string;
   bio: string;
 }
 
-const lista: Array<Lista> = [
+const list: Array<Person> = [
   {
     id: 1,
     name: "Ada Lovelace",
@@ -35,12 +35,12 @@ const handleSub = (ev: SubmitEvent): void => {
     case "form-1B":
       const input1B = document.getElementById("input1B") as HTMLInputElement;
       const h4 = document.getElementById("vowelsResult") as HTMLElement;
-      const text1B = input1B.value;
+      const text1B: string = input1B.value;
 
       if (text1B === "" || !isNaN(Number(text1B))) {
         h4.innerHTML = `Nenhuma palavra submetida!`;
       } else {
-        const result1B = vowelsQuantity(text1B);
+        const result1B: number = vowelsQuantity(text1B);
         result1B !== 0
           ? (h4.innerHTML = `${result1B} vogais`)
           : (h4.innerHTML = ` Nenhuma vogal encontrada!`);
@@ -51,7 +51,7 @@ const handleSub = (ev: SubmitEvent): void => {
     case "form-2A":
       const input2A = document.getElementById("input2A") as HTMLFormElement;
 
-      const result2A = findBioById(+input2A.value);
+      const result2A: string = findBioById(+input2A.value);
 
       result2A ? alert(`Biografia: ${result2A}`) : alert("Pessoa não encontrada");
       break;
@@ -59,14 +59,14 @@ const handleSub = (ev: SubmitEvent): void => {
     case "form-2B":
       const input2B = document.getElementById("input2B") as HTMLFormElement;
 
-      const result2B = findNameById(+input2B.value);
+      const result2B: string = findNameById(+input2B.value);
       result2B ? alert(`Nome: ${result2B}`) : alert("Pessoa não encontrada");
       break;
 
     case "form-2C":
       const input2C = document.getElementById("input2C") as HTMLFormElement;
 
-      const result2C = removeItemById(+input2C.value);
+      const result2C: Person[] = removeItemById(+input2C.value);
 
       result2C
         ? alert(
@@ -83,13 +83,13 @@ const handleSub = (ev: SubmitEvent): void => {
       const input2D = document.getElementById("input2D") as HTMLFormElement;
       const item = document.querySelector('input[name="group"]:checked') as HTMLFormElement;
       const text = document.getElementById(`formText2D`) as HTMLFormElement;
-      const person2D = editPersonById(+input2D.value, item.value, text.value);
-      const result2D = person2D[item.value];
+      const person2D: Person = editPersonById(+input2D.value, item.value, text.value);
+      const result2D: string = person2D[item.value];
       result2D
         ? alert(
-            `Pessoa com id=${+input2D.value} teve a(o) ${
+            `Pessoa com id=${input2D.value} teve a(o) ${
               item.value
-            } modificado para "${result2D}"\n${JSON.stringify(person2D, null, 2)}`,
+            } modificada(o) para "${result2D}"\n${JSON.stringify(person2D, null, 2)}`,
           )
         : alert("Pessoa não encontrada");
       break;
@@ -117,42 +117,43 @@ function vowelsQuantity(text: string): number {
 }
 
 // Encontra uma pessoa pelo ID na lista
-const findPersonById = (id: number): Lista => lista.find((person) => person.id === id);
+const findPersonById = (id: number): Person => list.find((person) => person.id === id);
 
 // A) Função para encontrar e exibir a biografia de uma pessoa pelo ID
 function findBioById(id: number): string | undefined {
   //Chama a função findPersonById e armazena o resultado em personA
-  const personA = findPersonById(id);
+  const personA: Person = findPersonById(id);
   //Se personA for avaliado como verdadeiro, retorna a bio, caso contrario, undefined
   return personA ? personA.bio : undefined;
 }
 
 // B) Função para encontrar e exibir o nome de uma pessoa pelo ID
 function findNameById(id: number): string | undefined {
-  const personB = findPersonById(id);
+  const personB: Person = findPersonById(id);
   return personB ? personB.name : undefined;
 }
 
 // C) Função para remover um item específico de uma pessoa pelo ID
-function removeItemById(id: number): Object | undefined {
+function removeItemById(id: number): Person[] | undefined {
   // cria uma nova lista filtrando o item com o id fornecido para fora da lista
-  const newList = lista.filter((person) => person.id !== id);
+  const newList: Person[] = list.filter((person) => person.id !== id);
   // validação caso faça uma busca com id nao existente
-  return newList.length !== lista.length ? newList : undefined;
+  return newList.length !== list.length ? newList : undefined;
 }
 
 // D) Função que altera a bio ou o name a partir de um id passado
-function editPersonById(id: number, item: string, text: string): Lista | undefined {
-  const personD = findPersonById(id);
+function editPersonById(id: number, item: string, text: string): Person | undefined {
+  const personD: Person = findPersonById(id);
+  const option: string = item.toLowerCase();
 
   if (personD) {
     // Se uma pessoa for encontrada, execute o seguinte bloco.
-    let newPerson: Lista = { ...personD };
+    let newPerson: Person = { ...personD };
     // Cria uma cópia do objeto original "personD" usando o operador spread.
 
-    if (item === "name") {
+    if (option === "name") {
       newPerson.name = text;
-    } else if (item === "bio") {
+    } else if (option === "bio") {
       newPerson.bio = text;
     }
 
@@ -165,14 +166,15 @@ function editPersonById(id: number, item: string, text: string): Lista | undefin
 ////////////////////////////////////////////////////////////////
 
 //Paradigma Imperativo
+const newList = [...list]
 
-let foundPerson: Lista | undefined;
+let foundPerson: Person | undefined;
 
 // Função para encontrar uma pessoa pelo ID de forma imperativa
-function findByIdImperativo(id: number): Lista | undefined {
-  for (let i = 0; i < lista.length; i++) {
-    if (lista[i].id === id) {
-      foundPerson = lista[i];
+function findByIdImperative(id: number): Person | undefined {
+  for (let i = 0; i < newList.length; i++) {
+    if (newList[i].id === id) {
+      foundPerson = newList[i];
       break; // Encontrou a pessoa, então pare o loop
     }
   }
@@ -180,11 +182,11 @@ function findByIdImperativo(id: number): Lista | undefined {
   return foundPerson;
 }
 
-const personA = findByIdImperativo(1);
+const personA: Person = findByIdImperative(1);
 
 // Função para obter o nome de uma pessoa de forma imperativa
-function getName(person: Lista | undefined): void {
-  const name = person ? person.name : "Nome não encontrado.";
+function getName(person: Person | undefined): void {
+  const name: string = person ? person.name : "Nome não encontrado.";
   console.log(`\nB) Nome: ${name}`);
 }
 
@@ -192,30 +194,30 @@ function getName(person: Lista | undefined): void {
 getName(personA);
 
 // Função para remover um item pelo ID de forma imperativa
-function removeItemByIdImperativo(id: number): void {
-  for (let i = 0; i < lista.length; i++) {
-    if (lista[i].id === id) {
-      lista.splice(i, 1); // Remove o item da lista
+function removeItemByIdImperative(id: number): void {
+  for (let i = 0; i < newList.length; i++) {
+    if (newList[i].id === id) {
+      newList.splice(i, 1); // Remove o item da lista
       console.log(`\nC) Item com id=${id} removido da lista! `);
-      console.log(lista);
+      console.log(newList);
     }
   }
 }
 
-removeItemByIdImperativo(1);
+removeItemByIdImperative(1);
 
 // Função para editar um item pelo ID e atributo de forma imperativa
-function editByIdImperativo(id: number, item: string, text: string): void {
-  let itemFound = false; // Flag para verificar se o item foi encontrado
-  for (let i = 0; i < lista.length; i++) {
-    if (lista[i].id === id) {
+function editByIdImperative(id: number, item: string, text: string): void {
+  let itemFound: boolean = false; // Flag para verificar se o item foi encontrado
+  for (let i = 0; i < newList.length; i++) {
+    if (newList[i].id === id) {
       if (item === "name") {
-        lista[i].name = text; // Atualiza o nome
-        console.log(`\nD) O "nome" foi atualizado para: ${lista[i].name}`);
-        console.log(lista[i]);
+        newList[i].name = text; // Atualiza o nome
+        console.log(`\nD) O "nome" foi atualizado para: ${newList[i].name}`);
+        console.log(newList[i]);
       } else if (item === "bio") {
-        lista[i].bio = text; // Atualiza a biografia
-        console.log(`\nD) A "bio" foi atualizada para: ${lista[i].bio}`);
+        newList[i].bio = text; // Atualiza a biografia
+        console.log(`\nD) A "bio" foi atualizada para: ${newList[i].bio}`);
       }
       itemFound = true; // Item encontrado
       break; // Pare o loop depois de encontrar o item
@@ -227,7 +229,9 @@ function editByIdImperativo(id: number, item: string, text: string): void {
   }
 }
 
-editByIdImperativo(2, "name", "Diego");
+editByIdImperative(2, "name", "Diego");
 
-console.log(`\nA Lista original sofreu modificações:`);
-console.log(lista);
+console.log(`\nA Person original sofreu modificações:`);
+console.log(newList);
+
+
