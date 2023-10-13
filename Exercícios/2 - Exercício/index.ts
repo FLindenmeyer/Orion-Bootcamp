@@ -1,29 +1,31 @@
-// Importa a lista de pessoas do módulo 'list'
-import { lista } from "./list";
+import { Person, list } from "./list";
 
-// Encontra uma pessoa pelo ID na lista
-const findById = (id: number) => lista.find((person) => person.id === id);
+// Função para encontrar uma pessoa na lista pelo id.
+function findPersonById(id: number): Person | undefined {
+  const foundPerson: Person = list.find((element) => element.id === id);
+  return foundPerson;
+}
 
-// A) Função para encontrar e exibir a biografia de uma pessoa pelo ID
-function findBioById(id: number) {
-  const personA = findById(id);
-  console.log(`\nA) Biografia: ${personA.bio}`);
-  return personA.bio;
+// A) Função que retorna a bio do id passado
+function findBioById(id: number): string {
+  const personA: Person = findPersonById(id);
+  console.log(personA ? `\nA) Biografia: ${personA.bio}` : "\nA) Biografia não encontrada!");
+  return personA ? personA.bio : "\nA) Biografia não encontrada!";
 }
 findBioById(1);
 
 // B) Função para encontrar e exibir o nome de uma pessoa pelo ID
-function findNameById(id: number) {
-  const personB = findById(id);
+function findNameById(id: number): string {
+  const personB: Person = findPersonById(id);
   console.log(`\nB) Nome: ${personB.name}`);
-  return personB.name;
+  return personB ? personB.name : "\nB) Nome não encontrado!";
 }
 findNameById(2);
 
-// C) Função para remover um item específico de uma pessoa pelo ID
-function removeItemById(id: number) {
-  const newList = lista.filter((person) => person.id !== id);
-  console.log(`\nC) Nova lista com item de id=${id} removido: `);
+// C) Função que apaga um item da lista a partir de um id passado
+function removeItemById(id: number): Person[] {
+  const newList: Person[] = list.filter((person) => person.id !== id);
+  console.log(`\nC) Item de id=${id} removido com sucesso.\nNova Lista:`);
   console.log(newList);
   return newList;
 }
@@ -31,18 +33,20 @@ function removeItemById(id: number) {
 removeItemById(3);
 
 // D) Função para editar um item específico de uma pessoa pelo ID
-function editById(id: number, item: string, text: string) {
-  const personD = findById(id);
-  if (item === "name") {
+function editById(id: number, item: string, text: string): Person | undefined {
+  const personD: Person = findPersonById(id);
+  const option = item.toLowerCase();
+
+  if (personD && option === "name") {
     personD.name = text;
-    console.log(`\nD) O ${item} foi atualizada para: ${personD.name}`);
-  } else if (item === "bio") {
+    console.log(`\nD) O ${option} foi atualizada para: ${personD.name}`);
+  } else if (personD && option === "bio") {
     personD.bio = text;
-    console.log(`\nD) A ${item} foi atualizada para: ${personD.bio}`);
+    console.log(`\nD) A ${option} foi atualizada para: ${personD.bio}`);
   }
   console.log("\nPersonD atualizado:");
   console.log(personD);
-  return personD;
+  return personD ? personD : undefined;
 }
 
 editById(4, "bio", "a bio foi atualizada!");

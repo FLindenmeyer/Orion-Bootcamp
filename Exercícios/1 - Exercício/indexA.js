@@ -1,13 +1,8 @@
-/* A função recebe o parâmetro "text" fornecido e o converte para
- letras minúsculas. Em seguida, ela cria um novo array, onde cada
- caractere do texto é analisado em relação ao conjunto de vogais
- previamente definido.*/
 function findVowelsQuantity(text) {
-    const Vowels = ["a", "e", "i", "o", "u"];
-    const vowelsQuantity = text
-        .toLowerCase()
-        .split("")
-        .filter((char) => Vowels.indexOf(char) !== -1);
-    return vowelsQuantity.length;
+    // Expressão regular para encontrar todas as vogais, incluindo acentuadas (global e insensível a maiúsculas/minúsculas)
+    const vowelsRegex = /[aeiouáàâãéêíóôõúü]/gi;
+    // Encontrar todas as correspondências das vogais no text fornecido
+    const vowelsQuantity = text.match(vowelsRegex);
+    return vowelsQuantity ? vowelsQuantity.length : 0;
 }
 console.log(findVowelsQuantity("Millie Graham"));

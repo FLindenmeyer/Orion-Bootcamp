@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.lista = void 0;
-exports.lista = [
+exports.list = void 0;
+exports.list = [
     {
         id: 1,
         name: "Ada Lovelace",

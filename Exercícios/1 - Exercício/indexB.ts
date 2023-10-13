@@ -1,20 +1,20 @@
-const handleSubmit = (ev: SubmitEvent) => {
+//1.B)
+const handleSubmit = (ev: SubmitEvent): void => {
   ev.preventDefault();
-
   const input = document.getElementById("textInput") as HTMLInputElement;
-  const Vowels: string[] = ["a", "e", "i", "o", "u"];
-  const h4 = document.getElementById("result");
+  const h4 = document.getElementById("result") as HTMLElement;
 
-  if (input.value !== "") {
-    const vowelsQuantity: string[] = input.value
-      .toLowerCase()
-      .split("")
-      .filter((char) => Vowels.indexOf(char) !== -1);
-
-    const result = vowelsQuantity.length;
-    h4.innerHTML = `${result} vogais`;
-  } else {
+  // Verificar se o campo de entrada está vazio ou se é um número
+  if (input.value === "" || !isNaN(Number(input.value))) {
     h4.innerHTML = `Nenhuma palavra submetida!`;
+  } else {
+    // Expressão regular para encontrar vogais criada
+    const vowelsRegex: RegExp = /[aeiouáàâãéêíóôõúü]/gi;
+    // Procura correspondências da regex com o texto
+    const vowelsQuantity = input.value.match(vowelsRegex);
+    vowelsQuantity
+      ? (h4.innerHTML = `${vowelsQuantity.length} vogais`)
+      : (h4.innerHTML = ` Nenhuma vogal encontrada!`);
   }
 };
 

@@ -3,17 +3,39 @@
   margin: 0;
   box-sizing: border-box;
 }
-main {
-  height: 100vh;
+body {
   width: 100vw;
+  height: 100vh;
   display: grid;
   place-content: center;
+  background: #c9d1db;
 }
 
-h4 {
-  text-align: center;
+main {
+  display: flex;
+  flex-direction: column;
+  background: #282c34;
+  width: fit-content;
+  color: white;
+  margin: 60px 0;
+  border-radius: 10px;
+
+  & h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    margin: 0;
+    border: 1px dotted white;
+  }
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   padding: 20px;
-  margin: 20px 0;
-  height: 60px;
-  border: 1px solid black;
+  width: fit-content;
 }
