@@ -116,8 +116,8 @@ function vowelsQuantity(text: string): number {
   return vowelsQuantity ? vowelsQuantity.length : 0;
 }
 
-// Encontra uma pessoa pelo ID na lista
-const findPersonById = (id: number): Person => list.find((person) => person.id === id);
+// Função para encontrar uma pessoa na lista pelo id.
+const findPersonById = (id: number): Person | undefined => list.find((person) => person.id === id);
 
 // A) Função para encontrar e exibir a biografia de uma pessoa pelo ID
 function findBioById(id: number): string | undefined {
@@ -166,7 +166,7 @@ function editPersonById(id: number, item: string, text: string): Person | undefi
 ////////////////////////////////////////////////////////////////
 
 //Paradigma Imperativo
-const newList = [...list]
+const newList: Person[] = [...list];
 
 let foundPerson: Person | undefined;
 
@@ -233,5 +233,3 @@ editByIdImperative(2, "name", "Diego");
 
 console.log(`\nA Person original sofreu modificações:`);
 console.log(newList);
-
-

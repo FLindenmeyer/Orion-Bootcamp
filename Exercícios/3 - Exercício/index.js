@@ -81,7 +81,7 @@ function vowelsQuantity(text) {
     const vowelsQuantity = text.match(vowelsRegex);
     return vowelsQuantity ? vowelsQuantity.length : 0;
 }
-// Encontra uma pessoa pelo ID na lista
+// Função para encontrar uma pessoa na lista pelo id.
 const findPersonById = (id) => list.find((person) => person.id === id);
 // A) Função para encontrar e exibir a biografia de uma pessoa pelo ID
 function findBioById(id) {

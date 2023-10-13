@@ -17,8 +17,7 @@
         <a href="#2.b" class="menu__link">Exercício 2.b</a>
         <a href="#2.c" class="menu__link">Exercício 2.c</a>
         <a href="#2.d" class="menu__link">Exercício 2.d</a>
-        <a href="#2.e" class="menu__link">Exercício 2.e</a>
-       
+        <a href="#2.e" class="menu__link">Exercício 2.e</a> 
       </nav>
     </header>
     <main>
@@ -103,8 +102,7 @@ console.log(findVowelsQuantity(&quot;Millie Graham&quot;));
           <pre>
             <code class="language-typescript"> 
 // Encontra uma pessoa pelo ID na lista
-const findPersonById = (id: number): Lista =&gt; lista.find((person) =&gt; person.id === id);
-
+const findPersonById = (id: number): Person | undefined =&gt; list.find((person) =&gt; person.id === id);
 // A) Fun&ccedil;&atilde;o para encontrar e exibir a biografia de uma pessoa pelo ID
 function findBioById(id: number): string | undefined {
 
@@ -148,9 +146,9 @@ function findNameById(id: number): string | undefined {
 // C) Fun&ccedil;&atilde;o para remover um item espec&iacute;fico de uma pessoa pelo ID
 function removeItemById(id: number): Person[] | undefined {
   // cria uma nova lista filtrando o item com o id fornecido para fora da lista
-  const newList: Person[] = lista.filter((person) =&gt; person.id !== id);
+  const newList: Person[] = list.filter((person) =&gt; person.id !== id);
   // valida&ccedil;&atilde;o caso fa&ccedil;a uma busca com id nao existente
-  return newList.length !== lista.length ? newList : undefined;
+  return newList.length !== list.length ? newList : undefined;
 }
             </code>
             <form id="form-2C" action="">
@@ -361,6 +359,10 @@ function removeItemById(id: number): Person[] | undefined {
           <details>
             <summary>Algumas mudanças no html, css e ts</summary>
             <p>Algumas mudanças nos arquivos do exercício 3</p>
+          </details>
+          <details>
+            <summary>correção de bugs e estilização da pagina</summary>
+            <p>Realizei algumas pequenas mudanças</p>
           </details>
         </div>
       </section>
