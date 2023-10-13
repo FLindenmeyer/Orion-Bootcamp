@@ -59,11 +59,16 @@ const handleSub = (ev) => {
             const input2D = document.getElementById("input2D");
             const item = document.querySelector('input[name="group"]:checked');
             const text = document.getElementById(`formText2D`);
-            const person2D = editPersonById(+input2D.value, item.value, text.value);
-            const result2D = person2D[item.value];
-            result2D
-                ? alert(`Pessoa com id=${input2D.value} teve a(o) ${item.value} modificada(o) para "${result2D}"\n${JSON.stringify(person2D, null, 2)}`)
-                : alert("Pessoa não encontrada");
+            if (input2D.value && item.value && text.value) {
+                const person2D = editPersonById(+input2D.value, item.value, text.value);
+                const result2D = person2D[item.value];
+                result2D
+                    ? alert(`Pessoa com id=${input2D.value} teve a(o) ${item.value} modificada(o) para "${result2D}"\n${JSON.stringify(person2D, null, 2)}`)
+                    : alert("Pessoa não encontrada");
+            }
+            else {
+                alert("Por favor preencha todos os campos!");
+            }
             break;
         default:
             alert("Opção invalida!");
