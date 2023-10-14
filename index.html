@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 3</title>
+    <link rel="stylesheet" href="styles/style.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+    />
+    <link rel="shortcut icon" href="#" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="#2.a" class="menu__link">Exercício 2.a</a>
+        <a href="#2.b" class="menu__link">Exercício 2.b</a>
+        <a href="#2.c" class="menu__link">Exercício 2.c</a>
+        <a href="#2.d" class="menu__link">Exercício 2.d</a>
+        <a href="#2.e" class="menu__link">Exercício 2.e</a> 
+      </nav>
+    </header>
+    <main>
+      <section>
+        <div>
+          <h3>1 - Criar uma função que retorne a quantidade de vogais da palavra passada.</h3>
+          <p>
+            <strong>a)</strong> Dar um exemplo de uso com uma palavra recebida via parâmetro da
+            função.
+          </p>
+          <div class="result-container">
+            <pre>
+              <code class="language-typescript"> 
+function findVowelsQuantity(text: string): number {
+  // Express&atilde;o regular para encontrar todas as vogais, incluindo acentuadas (global e insens&iacute;vel a mai&uacute;sculas/min&uacute;sculas)
+  const vowelsRegex: RegExp = /[aeiou&aacute;&agrave;&acirc;&atilde;&eacute;&ecirc;&iacute;&oacute;&ocirc;&otilde;&uacute;&uuml;]/gi;
+
+  // Encontrar todas as correspond&ecirc;ncias das vogais no text fornecido
+  const vowelsQuantity = text.match(vowelsRegex);
+
+  return vowelsQuantity ? vowelsQuantity.length : 0;
+}
+
+console.log(findVowelsQuantity(&quot;Millie Graham&quot;));
+// output: 5
+              </code>
+            </pre>
+          </div>
+          <p>
+            <strong>b)</strong> Dar um exemplo de uso com uma palavra recebida via input no
+            formulário.
+          </p>
+          <div class="result">
+            <form id="form-1B" action="">
+              <label for="input1B">Palavra:</label>
+              <input type="text" id="input1B" name="input1B" placeholder="Texto = 2 vogais" />
+              <button id="submitBtn" type="submit">Apply</button>
+            </form>
+            <h4 id="vowelsResult"></h4>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3>2 - Dado o array:</h3>
+        <p>Obs: As funções desse exercício foram feitas seguindo paradigma Funcional</p>
+        <div class="list-Container">
+          <pre>
+            <code class="language-typescript code1" style="white-space: pre-wrap">
+  interface Person {
+    id: number;
+    name: string;
+    bio: string;
+  }
+
+  let list: Array&lt;Person&gt; = [
+    {
+      id: 1,
+      name: "Ada Lovelace",
+      bio: " Ada Lovelace, foi uma matemática e escritora inglesa reconhecida por ter escrito o primeiro algoritmo para ser processado por uma máquina",
+    },
+    {
+      id: 2,
+      name: "Alan Turing",
+      bio: "Alan Turing foi um matemático, cientista da computação, lógico, cripto-analista, filósofo e biólogo teórico britânico, ele é amplamente considerado o pai da ciência da computação teórica e da inteligência artificial",
+    },
+    {
+      id: 3,
+      name: "Nikola Tesla",
+      bio: "Nikola Tesla foi um inventor, engenheiro eletrotécnico e engenheiro mecânico sérvio, mais conhecido por suas contribuições ao projeto do moderno sistema de fornecimento de eletricidade em corrente alternada.",
+    },
+    {
+      id: 4,
+      name: "Nicolau Copérnico",
+      bio: "Nicolau Copérnico foi um astrônomo e matemático polonês que desenvolveu a teoria heliocêntrica do Sistema Solar",
+    },
+  ];
+            </code>
+          </pre>
+        </div>
+        <p id="2.a"><strong>a)</strong> Crie uma função que retorne a bio do id passado</p>
+        <div class="result-container">
+          <pre>
+            <code class="language-typescript"> 
+// Encontra uma pessoa pelo ID na lista
+const findPersonById = (id: number): Person | undefined =&gt; list.find((person) =&gt; person.id === id);
+// A) Fun&ccedil;&atilde;o para encontrar e exibir a biografia de uma pessoa pelo ID
+function findBioById(id: number): string | undefined {
+
+  const personA: Person = findPersonById(id);
+
+  return personA ? personA.bio : undefined;
+}
+            </code>
+            <form id="form-2A" action="">
+              <label for="input2A">Id:</label>
+              <input id="input2A" name="input2A" type="number" placeholder="a)"/>
+              <button type="submit">Apply</button>
+            </form>
+          </pre>
+        </div>
+        <p id="2.b"><strong>b)</strong> Crie uma função que retorne o name do id passado</p>
+        <div class="result-container">
+          <pre>
+            <code  > 
+// B) Fun&ccedil;&atilde;o para encontrar e exibir o nome de uma pessoa pelo ID
+function findNameById(id: number): string | undefined {
+
+  const personB: Person = findPersonById(id);
+
+  return personB ? personB.name : undefined;
+}
+            </code>
+            <form id="form-2B" action="">
+              <label for="input2B">Id:</label>
+              <input id="input2B" name="input2B" type="number" placeholder="b)"/>
+              <button type="submit">Apply</button>
+            </form>
+          </pre>
+        </div>
+        <p id="2.c">
+          <strong>c)</strong> Crie uma função que apague um item da lista a partir de um id passado
+        </p>
+        <div class="result-container">
+          <pre>
+            <code class="language-typescript"> 
+// C) Fun&ccedil;&atilde;o para remover um item espec&iacute;fico de uma pessoa pelo ID
+function removeItemById(id: number): Person[] | undefined {
+  // cria uma nova lista filtrando o item com o id fornecido para fora da lista
+  const newList: Person[] = list.filter((person) =&gt; person.id !== id);
+  // valida&ccedil;&atilde;o caso fa&ccedil;a uma busca com id nao existente
+  return newList.length !== list.length ? newList : undefined;
+}
+            </code>
+            <form id="form-2C" action="">
+              <label for="input2C">Id:</label>
+              <input id="input2C" name="input2C" type="number" placeholder="c)"/>
+              <button type="submit">Apply</button>
+            </form>
+          </pre>
+        </div>
+        <p id="2.d">
+          <strong>d)</strong> Crie uma função que altere a bio ou o name a partir de um id passado
+        </p>
+        <div class="result-container">
+          <pre>
+            <code class="language-typescript"> 
+  // D) Fun&ccedil;&atilde;o que altera a bio ou o name a partir de um id passado
+  function editPersonById(id: number, item: string, text: string): Person | undefined {
+  
+    const personD: Person = findPersonById(id);
+    const option: string = item.toLowerCase();
+
+    if (personD) {
+      // Cria uma c&oacute;pia do objeto original &quot;personD&quot; usando o operador spread.
+      let newPerson: Person = { ...personD };
+
+      if (option === &quot;name&quot;) {
+      newPerson.name = text;
+      } else if (option === &quot;bio&quot;) {
+      newPerson.bio = text;
+      }
+
+      return newPerson;
+      }
+
+    return undefined;
+  }
+            </code>
+          </pre>
+          <form id="form-2D" action="">
+            <div>
+              <label for="input2D">Id:</label>
+              <input id="input2D" name="input2D" type="number" placeholder="d)" />
+            </div>
+            <div class="checkboxContainer">
+              <input type="radio" id="bio" name="group" value="bio" />
+              <label for="bio">Bio</label>
+              <input type="radio" id="name" name="group" value="name" />
+              <label for="name">Name</label>
+            </div>
+            <div>
+              <label for="formText2D">Texto:</label>
+              <input type="text" name="formText2D" id="formText2D" />
+            </div>
+            <button type="submit">Apply</button>
+          </form>
+        </div>
+      </div>
+      <p id="2.e">
+        <strong>e)</strong> Funções no paradigma imperativo
+      </p>
+      <p>OBS: Visualize as respostar pelo console</p>
+      <div class="result-container">
+        <pre>
+          <code class="language-typescript"> 
+            //Paradigma Imperativo
+
+            const newList = [...list]
+
+            let foundPerson: Person | undefined;
+
+            // Fun&ccedil;&atilde;o para encontrar uma pessoa pelo ID de forma imperativa
+            function findByIdImperative(id: number): Person | undefined {
+              for (let i = 0; i &lt; newList.length; i++) {
+                if (newList[i].id === id) {
+                  foundPerson = newList[i];
+                  break; // Encontrou a pessoa, ent&atilde;o pare o loop
+                }
+              }
+              console.log(foundPerson ? `\nA) Biografia: ${foundPerson.bio}` : &quot;\nA) Pessoa n&atilde;o encontrada.&quot;);
+              return foundPerson;
+            }
+
+            const personA: Person = findByIdImperative(1);
+
+            // Fun&ccedil;&atilde;o para obter o nome de uma pessoa de forma imperativa
+            function getName(person: Person | undefined): void {
+              const name: string = person ? person.name : &quot;Nome n&atilde;o encontrado.&quot;;
+              console.log(`\nB) Nome: ${name}`);
+            }
+
+            // Chame a fun&ccedil;&atilde;o passando personA como argumento
+            getName(personA);
+
+            // Fun&ccedil;&atilde;o para remover um item pelo ID de forma imperativa
+            function removeItemByIdImperative(id: number): void {
+              for (let i = 0; i &lt; newList.length; i++) {
+                if (newList[i].id === id) {
+                  newList.splice(i, 1); // Remove o item da lista
+                  console.log(`\nC) Item com id=${id} removido da lista! `);
+                  console.log(newList);
+                }
+              }
+            }
+
+            removeItemByIdImperative(1);
+
+            // Fun&ccedil;&atilde;o para editar um item pelo ID e atributo de forma imperativa
+            function editByIdImperative(id: number, item: string, text: string): void {
+              let itemFound: boolean = false; // Flag para verificar se o item foi encontrado
+              for (let i = 0; i &lt; newList.length; i++) {
+                if (newList[i].id === id) {
+                  if (item === &quot;name&quot;) {
+                    newList[i].name = text; // Atualiza o nome
+                    console.log(`\nD) O &quot;nome&quot; foi atualizado para: ${newList[i].name}`);
+                    console.log(newList[i]);
+                  } else if (item === &quot;bio&quot;) {
+                    newList[i].bio = text; // Atualiza a biografia
+                    console.log(`\nD) A &quot;bio&quot; foi atualizada para: ${newList[i].bio}`);
+                  }
+                  itemFound = true; // Item encontrado
+                  break; // Pare o loop depois de encontrar o item
+                }
+              }
+
+              if (!itemFound) {
+                console.log(`\nD) Item n&atilde;o encontrado, imposs&iacute;vel editar!`);
+              }
+            }
+
+            editByIdImperative(2, &quot;name&quot;, &quot;Diego&quot;);
+
+            console.log(`\nA Person original sofreu modifica&ccedil;&otilde;es:`);
+            console.log(newList);
+          </code>
+        </pre>
+      </div>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <script src="dist/index.js"></script>
+  </body>
+</html>
